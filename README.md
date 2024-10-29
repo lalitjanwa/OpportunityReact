@@ -1,18 +1,30 @@
-# Salesforce DX Project: Next Steps
+#  Opportunity Quote with Line Items
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
-## How Do You Plan to Deploy Your Changes?
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+We created two components to meet the project needs: an Apex class (AccountOpportunityDataContact) and an LWC (accountOppQuoteComponent). The Apex class fetches open Opportunities, Quotes, and Quote Line Items for an Account in JSON format, which the LWC then uses to display data in the UI. This setup ensures streamlined data retrieval and display across Salesforce.
 
-## Configure Your Salesforce DX Project
+Below are the schema for the project.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+![Alt text](https://github.com/lalitjanwa/OpportunityReact/blob/main/images/schema.png)
 
-## Read All About It
+As after checking found Opportunity and Quote have Master-Details same as Quote and Quote Line Item have Master-Details so get all these records into single query.
+-  ![Alt text](https://github.com/lalitjanwa/OpportunityReact/blob/main/images/query.png)
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+Below components were used for this Project.
+* Apex Class
+  - AccountOpportunityDataController : This class is responsible for fetching open Opportunities, Quotes, and Quote Line Items for a specific Account.
+
+* LWC Component
+  - accountOppQuoteComponent : This component serves as the UI representation of the data fetched by the Apex class. It displays the retrieved information on the Account detail page, providing users with a clear view of associated Opportunities and Quotes.
+ 
+The Component will show on the Account level as below.
+-  ![Alt text](https://github.com/lalitjanwa/OpportunityReact/blob/main/images/quote_line_records.png)
+
+To Customer Validation we have added some validations.
+-  **No Opportunity Quotes** : Validation message displayed if no quotes are associated with the account's opportunities.
+    - ![Alt text](https://github.com/lalitjanwa/OpportunityReact/blob/main/images/no_opp_quote.png)
+-  **No Quote** : Validation message shown if there are opportunities but no quotes available.
+    -  ![Alt text](https://github.com/lalitjanwa/OpportunityReact/blob/main/images/no_quote.png)
+- **No Quote Line** : Validation message triggered if there are quotes, but no line items associated with them.
+  -  ![Alt text](https://github.com/lalitjanwa/OpportunityReact/blob/main/images/no_quote_line.png)
